@@ -1,0 +1,46 @@
+server:
+  port: 9003
+
+spring:
+  application:
+    name: Config
+  cloud:
+    config:
+      server:
+        git:
+          #配置Git仓库地址以及账号密码
+          uri:
+          username:
+          password:
+          #配置了文件搜索的位置
+          search-paths:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/libingteam?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+  profiles:
+    active: core
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    status-page-url-path: /info
+    health-check-url-path: /health
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
+mybatis:
+  mapper-locations: classpath*:mapper/**/*.xml
+
+logging:
+  level:
+    com.zjy: debug
